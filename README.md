@@ -36,12 +36,3 @@ that these inventories constitute complete raga grammars. Raga identity depends
 on melodic movement, phraseology, intonation, ornamentation, emphasis, and
 performance tradition. Real archival reconstruction therefore requires
 expert-annotated recordings and raga-specific constraints.
-
-## GitHub
-
-After creating the repository, replace the placeholder in the manuscript with
-the actual public URL, e.g.
-
-`https://github.com/YOUR-USERNAME/ars-raga-reconstruction`
-
-Do not cite a repository URL that has not actually been created.
