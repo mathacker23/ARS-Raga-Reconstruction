@@ -1,11 +1,9 @@
 
-"""Evaluation metrics for the reproducible simulation."""
 
 import numpy as np
 
 
 def mask_sequence(seq, missing_rate, rng):
-    """Randomly hide a fraction of positions; the returned mask is reproducible."""
     n = len(seq)
     m = int(round(n * missing_rate))
     idx = rng.choice(n, size=m, replace=False)
@@ -16,7 +14,6 @@ def mask_sequence(seq, missing_rate, rng):
 
 
 def missing_accuracy(truth, reconstruction, missing_positions):
-    """Accuracy only on positions that were genuinely hidden."""
     if not missing_positions:
         return 1.0
     return float(np.mean([
