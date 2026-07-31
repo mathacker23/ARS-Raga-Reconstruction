@@ -1,16 +1,4 @@
 
-"""Reproducible proof-of-concept experiment for the ARS mathematics.
-
-This script does NOT claim to reproduce historical recordings. It generates
-synthetic sequences from explicitly stated transition models, hides notes, and
-tests whether a constrained higher-order model can recover them.
-
-Run:
-    python simulate.py
-
-A fixed master seed is used, and each trial receives a deterministic child seed.
-"""
-
 from pathlib import Path
 import csv
 import numpy as np
@@ -24,9 +12,6 @@ N_TEST = 60
 LENGTH = 32
 ALPHA = 0.5
 
-# Canonical note inventories used only as symbolic labels. These are NOT complete
-# raga grammars: the experiment deliberately avoids pretending that a scale alone
-# captures a raga's full melodic identity.
 RAGAS = {
     "Yaman": ["S", "R", "G", "M+", "P", "D", "N"],
     "Bhairav": ["S", "r", "G", "M", "P", "d", "N"],
@@ -37,11 +22,7 @@ RAGAS = {
 }
 
 def transition_matrix(A):
-    """Create a deliberately transparent synthetic melodic grammar.
 
-    The kernel is based on local interval preference plus a small self-transition
-    probability. It is a simulation device, not a claim about performance practice.
-    """
     N = len(A)
     T = np.zeros((N, N))
     for i in range(N):
@@ -75,9 +56,6 @@ def run():
         T = transition_matrix(A)
         train = sample_sequences(A, T, N_TRAIN, LENGTH, local_rng)
         test = sample_sequences(A, T, N_TEST, LENGTH, local_rng)
-
-        # The same synthetic data are used to compare orders; this is a controlled
-        # simulation, not a train/test claim about real archival music.
         for order in [1, 2, 3]:
             _, _, probs = fit_markov(train, A, order=order, alpha=ALPHA)
             for missing_rate in [0.10, 0.30, 0.50]:
